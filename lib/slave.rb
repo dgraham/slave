@@ -126,7 +126,7 @@ require 'sync'
   #
     class ThreadSafe
 #--{{{
-      instance_methods.each{|m| undef_method m.to_sym unless m[%r/__/]}
+      instance_methods.each{|m| undef_method m.to_sym unless m[%r/__/] || m.to_sym == :object_id }
       def initialize object
         @object = object
         @sync = Sync.new
